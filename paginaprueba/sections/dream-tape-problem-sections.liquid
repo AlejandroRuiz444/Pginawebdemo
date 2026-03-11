@@ -1,0 +1,325 @@
+{% comment %}
+  DREAM TAPE - PROBLEM SECTIONS
+  Secciones de problemas y soluciones con Dream Tape
+{% endcomment %}
+
+<section class="dt-section">
+  <div class="dt-container">
+    
+    {%- for block in section.blocks -%}
+      
+      {%- if block.type == 'problem_section' -%}
+        <div class="dt-animate dt-animate-delay-{{ forloop.index | modulo: 4 }}" {{ block.shopify_attributes }}>
+          
+          {%- comment -%} Ícono {%- endcomment -%}
+          {%- if block.settings.icon != blank -%}
+            <div class="dt-section-icon">{{ block.settings.icon }}</div>
+          {%- endif -%}
+          
+          {%- comment -%} Título {%- endcomment -%}
+          <h2 class="dt-section-h2">{{ block.settings.title }}</h2>
+          
+          {%- comment -%} Descripción {%- endcomment -%}
+          {%- if block.settings.description != blank -%}
+            <div class="dt-section-body">
+              {{ block.settings.description }}
+            </div>
+          {%- endif -%}
+          
+          {%- comment -%} Layout según el tipo {%- endcomment -%}
+          {%- case block.settings.layout -%}
+            
+            {%- when 'split_image' -%}
+              <div class="dt-split-grid">
+                <div>
+                  {%- if block.settings.content != blank -%}
+                    {{ block.settings.content }}
+                  {%- endif -%}
+                </div>
+                <div>
+                  {%- if block.settings.image != blank -%}
+                    <img 
+                      src="{{ block.settings.image | image_url: width: 600 }}"
+                      alt="{{ block.settings.title }}"
+                      loading="lazy"
+                      style="border-radius: var(--dt-border-radius);"
+                    >
+                  {%- else -%}
+                    {{ 'lifestyle-1' | placeholder_svg_tag }}
+                  {%- endif -%}
+                </div>
+              </div>
+            
+            {%- when 'features_grid' -%}
+              <div class="dt-features-grid">
+                {%- if block.settings.feature_1_title != blank -%}
+                  <div class="dt-feature-card">
+                    <div class="dt-feature-icon">{{ block.settings.feature_1_icon }}</div>
+                    <h3 class="dt-feature-title">{{ block.settings.feature_1_title }}</h3>
+                    <p class="dt-feature-description">{{ block.settings.feature_1_desc }}</p>
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.feature_2_title != blank -%}
+                  <div class="dt-feature-card">
+                    <div class="dt-feature-icon">{{ block.settings.feature_2_icon }}</div>
+                    <h3 class="dt-feature-title">{{ block.settings.feature_2_title }}</h3>
+                    <p class="dt-feature-description">{{ block.settings.feature_2_desc }}</p>
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.feature_3_title != blank -%}
+                  <div class="dt-feature-card">
+                    <div class="dt-feature-icon">{{ block.settings.feature_3_icon }}</div>
+                    <h3 class="dt-feature-title">{{ block.settings.feature_3_title }}</h3>
+                    <p class="dt-feature-description">{{ block.settings.feature_3_desc }}</p>
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.feature_4_title != blank -%}
+                  <div class="dt-feature-card">
+                    <div class="dt-feature-icon">{{ block.settings.feature_4_icon }}</div>
+                    <h3 class="dt-feature-title">{{ block.settings.feature_4_title }}</h3>
+                    <p class="dt-feature-description">{{ block.settings.feature_4_desc }}</p>
+                  </div>
+                {%- endif -%}
+              </div>
+            
+            {%- when 'lists' -%}
+              <div class="dt-split-grid">
+                <div>
+                  <h3 style="color: var(--dt-urgency); margin-bottom: 1rem;">{{ block.settings.list_1_title }}</h3>
+                  <ul class="dt-list-check">
+                    {%- if block.settings.list_1_item_1 != blank -%}
+                      <li><span class="x-icon">❌</span> {{ block.settings.list_1_item_1 }}</li>
+                    {%- endif -%}
+                    {%- if block.settings.list_1_item_2 != blank -%}
+                      <li><span class="x-icon">❌</span> {{ block.settings.list_1_item_2 }}</li>
+                    {%- endif -%}
+                    {%- if block.settings.list_1_item_3 != blank -%}
+                      <li><span class="x-icon">❌</span> {{ block.settings.list_1_item_3 }}</li>
+                    {%- endif -%}
+                    {%- if block.settings.list_1_item_4 != blank -%}
+                      <li><span class="x-icon">❌</span> {{ block.settings.list_1_item_4 }}</li>
+                    {%- endif -%}
+                  </ul>
+                </div>
+                <div>
+                  <h3 style="color: var(--dt-success); margin-bottom: 1rem;">{{ block.settings.list_2_title }}</h3>
+                  <ul class="dt-list-check">
+                    {%- if block.settings.list_2_item_1 != blank -%}
+                      <li><span class="check-icon">✅</span> {{ block.settings.list_2_item_1 }}</li>
+                    {%- endif -%}
+                    {%- if block.settings.list_2_item_2 != blank -%}
+                      <li><span class="check-icon">✅</span> {{ block.settings.list_2_item_2 }}</li>
+                    {%- endif -%}
+                    {%- if block.settings.list_2_item_3 != blank -%}
+                      <li><span class="check-icon">✅</span> {{ block.settings.list_2_item_3 }}</li>
+                    {%- endif -%}
+                    {%- if block.settings.list_2_item_4 != blank -%}
+                      <li><span class="check-icon">✅</span> {{ block.settings.list_2_item_4 }}</li>
+                    {%- endif -%}
+                  </ul>
+                </div>
+              </div>
+              
+          {%- endcase -%}
+          
+        </div>
+        
+        {%- unless forloop.last -%}
+          <div style="height: 60px;"></div>
+        {%- endunless -%}
+        
+      {%- endif -%}
+      
+    {%- endfor -%}
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dream Tape Problem Sections",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "problem_section",
+      "name": "Sección de Problema",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícono/Emoji",
+          "default": "😴"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Título",
+          "default": "¿Dormir mal?"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descripción"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Tipo de Layout",
+          "options": [
+            {
+              "value": "split_image",
+              "label": "Imagen y Texto"
+            },
+            {
+              "value": "features_grid",
+              "label": "Grid de Características"
+            },
+            {
+              "value": "lists",
+              "label": "Listas Comparativas"
+            }
+          ],
+          "default": "split_image"
+        },
+        {
+          "type": "header",
+          "content": "Para layout 'Imagen y Texto'"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "html",
+          "id": "content",
+          "label": "Contenido HTML"
+        },
+        {
+          "type": "header",
+          "content": "Para layout 'Grid de Características'"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_icon",
+          "label": "Feature 1 - Ícono"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_title",
+          "label": "Feature 1 - Título"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_1_desc",
+          "label": "Feature 1 - Descripción"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_icon",
+          "label": "Feature 2 - Ícono"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_title",
+          "label": "Feature 2 - Título"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_2_desc",
+          "label": "Feature 2 - Descripción"
+        },
+        {
+          "type": "text",
+          "id": "feature_3_icon",
+          "label": "Feature 3 - Ícono"
+        },
+        {
+          "type": "text",
+          "id": "feature_3_title",
+          "label": "Feature 3 - Título"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_3_desc",
+          "label": "Feature 3 - Descripción"
+        },
+        {
+          "type": "text",
+          "id": "feature_4_icon",
+          "label": "Feature 4 - Ícono"
+        },
+        {
+          "type": "text",
+          "id": "feature_4_title",
+          "label": "Feature 4 - Título"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_4_desc",
+          "label": "Feature 4 - Descripción"
+        },
+        {
+          "type": "header",
+          "content": "Para layout 'Listas Comparativas'"
+        },
+        {
+          "type": "text",
+          "id": "list_1_title",
+          "label": "Lista 1 - Título (Problemas)"
+        },
+        {
+          "type": "text",
+          "id": "list_1_item_1",
+          "label": "Lista 1 - Item 1"
+        },
+        {
+          "type": "text",
+          "id": "list_1_item_2",
+          "label": "Lista 1 - Item 2"
+        },
+        {
+          "type": "text",
+          "id": "list_1_item_3",
+          "label": "Lista 1 - Item 3"
+        },
+        {
+          "type": "text",
+          "id": "list_1_item_4",
+          "label": "Lista 1 - Item 4"
+        },
+        {
+          "type": "text",
+          "id": "list_2_title",
+          "label": "Lista 2 - Título (Soluciones)"
+        },
+        {
+          "type": "text",
+          "id": "list_2_item_1",
+          "label": "Lista 2 - Item 1"
+        },
+        {
+          "type": "text",
+          "id": "list_2_item_2",
+          "label": "Lista 2 - Item 2"
+        },
+        {
+          "type": "text",
+          "id": "list_2_item_3",
+          "label": "Lista 2 - Item 3"
+        },
+        {
+          "type": "text",
+          "id": "list_2_item_4",
+          "label": "Lista 2 - Item 4"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape Problem Sections"
+    }
+  ]
+}
+{% endschema %}

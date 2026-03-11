@@ -1,0 +1,34 @@
+{% comment %}
+  DREAM TAPE - FLOATING CTA (MOBILE)
+  CTA flotante que aparece cuando el hero CTA sale del viewport
+{% endcomment %}
+
+<div class="dt-floating-cta">
+  <button class="dt-cta-button" data-variant-id="{{ section.settings.product_variant_id }}">
+    {{ section.settings.cta_text }}
+  </button>
+</div>
+
+{% schema %}
+{
+  "name": "Dream Tape Floating CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del CTA",
+      "default": "📦 PIDELO YA"
+    },
+    {
+      "type": "text",
+      "id": "product_variant_id",
+      "label": "ID de Variante del Producto"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape Floating CTA"
+    }
+  ]
+}
+{% endschema %}

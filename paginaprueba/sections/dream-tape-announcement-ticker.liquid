@@ -1,0 +1,38 @@
+{% comment %}
+  DREAM TAPE - ANNOUNCEMENT TICKER (Superior)
+  Ticker infinito en la parte superior de la página
+{% endcomment %}
+
+<div class="dt-announcement-bar">
+  <div class="dt-ticker-wrapper">
+    <span class="dt-ticker-text">
+      {{ section.settings.ticker_text }}
+      <span class="dt-ticker-separator">{{ section.settings.separator }}</span>
+    </span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Dream Tape Announcement Ticker",
+  "settings": [
+    {
+      "type": "text",
+      "id": "ticker_text",
+      "label": "Texto del Ticker",
+      "default": "BIENVENIDOS A LIFULL"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separador",
+      "default": "✦"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape Announcement Ticker"
+    }
+  ]
+}
+{% endschema %}

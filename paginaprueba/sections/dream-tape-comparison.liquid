@@ -1,0 +1,168 @@
+{% comment %}
+  DREAM TAPE - COMPARISON TABLE
+  Tabla comparativa de características
+{% endcomment %}
+
+<section class="dt-comparison">
+  <div class="dt-container">
+    
+    {%- comment -%} Título {%- endcomment -%}
+    <h2 class="dt-comparison-title dt-animate">
+      {{ section.settings.title }}
+    </h2>
+    
+    {%- comment -%} Tabla Comparativa {%- endcomment -%}
+    <div class="dt-comparison-table dt-animate">
+      
+      {%- comment -%} Header {%- endcomment -%}
+      <div class="dt-table-header">
+        <div class="dt-table-cell">Característica</div>
+        <div class="dt-table-cell lifull">
+          <div class="dt-recommended-badge">RECOMENDADO</div>
+          LIFULL
+        </div>
+        <div class="dt-table-cell">Others</div>
+      </div>
+      
+      {%- comment -%} Filas {%- endcomment -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature_row' -%}
+          <div class="dt-table-row" {{ block.shopify_attributes }}>
+            <div class="dt-table-cell">{{ block.settings.feature_name }}</div>
+            <div class="dt-table-cell lifull">
+              {%- if block.settings.lifull_has -%}
+                <span class="dt-check-green">✅</span>
+              {%- else -%}
+                <span class="dt-x-red">❌</span>
+              {%- endif -%}
+            </div>
+            <div class="dt-table-cell">
+              {%- if block.settings.others_have -%}
+                <span class="dt-check-green">✅</span>
+              {%- else -%}
+                <span class="dt-x-red">❌</span>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+      
+    </div>
+    
+    {%- comment -%} CTA debajo de la tabla {%- endcomment -%}
+    {%- if section.settings.show_cta -%}
+      <div style="text-align: center; margin-top: 3rem;">
+        <button class="dt-cta-button">
+          {{ section.settings.cta_text }}
+        </button>
+      </div>
+    {%- endif -%}
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dream Tape Comparison",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Título",
+      "default": "🏆 ¿Por qué Dream Tape es la mejor opción para dormir mejor?"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Mostrar CTA debajo de la tabla",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del CTA",
+      "default": "Compra DREAM TAPE & dale un giro a tu descanso 😴🌙"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_row",
+      "name": "Fila de Característica",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_name",
+          "label": "Nombre de la Característica"
+        },
+        {
+          "type": "checkbox",
+          "id": "lifull_has",
+          "label": "LIFULL tiene esta característica",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "others_have",
+          "label": "Otros tienen esta característica",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape Comparison",
+      "blocks": [
+        {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Mejora la estética facial y previene papada",
+            "lifull_has": true,
+            "others_have": false
+          }
+        },
+        {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Reduce los ronquidos desde la primera noche",
+            "lifull_has": true,
+            "others_have": false
+          }
+        },
+        {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Entrena la respiración nasal mientras duermes",
+            "lifull_has": true,
+            "others_have": false
+          }
+        },
+        {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Adhesivo de grado médico, cómodo y seguro",
+            "lifull_has": true,
+            "others_have": false
+          }
+        },
+        {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "No requiere tecnología, baterías ni rutinas complicadas",
+            "lifull_has": true,
+            "others_have": false
+          }
+        },
+        {
+          "type": "feature_row",
+          "settings": {
+            "feature_name": "Resultados visibles desde el primer uso",
+            "lifull_has": true,
+            "others_have": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

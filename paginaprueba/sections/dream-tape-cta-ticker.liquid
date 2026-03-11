@@ -1,0 +1,50 @@
+{% comment %}
+  DREAM TAPE - CTA TICKER
+  Ticker rotativo de mensajes CTA con urgencia
+{% endcomment %}
+
+<section class="dt-cta-ticker">
+  <div class="dt-container">
+    
+    {%- comment -%} Mensaje que rota (controlado por JS) {%- endcomment -%}
+    <div class="dt-ticker-message">
+      {{ section.settings.initial_message }}
+    </div>
+    
+    {%- comment -%} Botón CTA {%- endcomment -%}
+    <button class="dt-cta-button">
+      {{ section.settings.cta_text }}
+    </button>
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dream Tape CTA Ticker",
+  "settings": [
+    {
+      "type": "text",
+      "id": "initial_message",
+      "label": "Mensaje Inicial",
+      "default": "🔥 Empieza a dormir mejor esta noche"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del Botón CTA",
+      "default": "📦 PIDELO YA"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape CTA Ticker"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+// Los mensajes rotativos están definidos en dream-tape.js
+// Se rotan automáticamente cada 3 segundos
+</script>

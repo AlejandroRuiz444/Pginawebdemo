@@ -1,0 +1,38 @@
+{% comment %}
+  DREAM TAPE - ASSETS LOADER
+  Carga los CSS y JS específicos de Dream Tape
+  Esta sección debe ir al principio del template
+{% endcomment %}
+
+{{ 'dream-tape-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'dream-tape.js' | asset_url }}" defer></script>
+
+{%- comment -%} Wrapper que aplica la clase dream-tape-page al body {%- endcomment -%}
+<div class="dream-tape-page">
+  {{ content_for_layout }}
+</div>
+
+<style>
+  /* Ocultar header/footer del tema por defecto si es necesario */
+  .dream-tape-page ~ header,
+  .dream-tape-page ~ footer {
+    display: none;
+  }
+  
+  /* Asegurar que el wrapper ocupe todo el viewport */
+  .dream-tape-page {
+    min-height: 100vh;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Dream Tape Assets Loader",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Dream Tape Assets Loader"
+    }
+  ]
+}
+{% endschema %}

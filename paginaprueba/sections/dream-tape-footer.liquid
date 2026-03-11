@@ -1,0 +1,103 @@
+{% comment %}
+  DREAM TAPE - FOOTER PRINCIPAL
+  Footer con newsletter y copyright
+{% endcomment %}
+
+<footer class="dt-footer">
+  <div class="dt-container">
+    
+    {%- comment -%} Newsletter {%- endcomment -%}
+    <div class="dt-newsletter">
+      <h3 class="dt-newsletter-title">{{ section.settings.newsletter_title }}</h3>
+      <p class="dt-newsletter-subtitle">{{ section.settings.newsletter_subtitle }}</p>
+      
+      <form class="dt-newsletter-form" action="/contact#newsletter" method="post" accept-charset="UTF-8">
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input 
+          type="email" 
+          name="contact[email]" 
+          class="dt-newsletter-input" 
+          placeholder="{{ section.settings.email_placeholder }}"
+          required
+        >
+        <button type="submit" class="dt-newsletter-button">
+          {{ section.settings.button_text }}
+        </button>
+      </form>
+    </div>
+    
+    {%- comment -%} Footer Bottom {%- endcomment -%}
+    <div class="dt-footer-bottom">
+      
+      {%- if section.settings.show_payment_methods -%}
+        <div class="dt-payment-methods">
+          {%- comment -%} Aquí irían íconos de métodos de pago {%- endcomment -%}
+          <svg width="40" height="24" viewBox="0 0 40 24" fill="currentColor" opacity="0.5">
+            <rect width="40" height="24" rx="4" fill="none" stroke="currentColor" stroke-width="1"/>
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="8" fill="currentColor">VISA</text>
+          </svg>
+          <svg width="40" height="24" viewBox="0 0 40 24" fill="currentColor" opacity="0.5">
+            <rect width="40" height="24" rx="4" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="14" cy="12" r="6" fill="currentColor" opacity="0.5"/>
+            <circle cx="26" cy="12" r="6" fill="currentColor" opacity="0.5"/>
+          </svg>
+        </div>
+      {%- endif -%}
+      
+      <p class="dt-copyright">
+        {{ section.settings.copyright_text }}
+      </p>
+      
+    </div>
+    
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Dream Tape Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "newsletter_title",
+      "label": "Título de Newsletter",
+      "default": "SUSCRÍBETE A LIFULL"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_subtitle",
+      "label": "Subtítulo de Newsletter",
+      "default": "Vive actualizado con nuestras ofertas y productos de lanzamiento."
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Placeholder del Email",
+      "default": "Tu email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Texto del Botón",
+      "default": "SUSCRÍBETE"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_methods",
+      "label": "Mostrar Métodos de Pago",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "copyright_text",
+      "label": "Texto de Copyright",
+      "default": "© 2026, LIFULL Powered by Shrine"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape Footer"
+    }
+  ]
+}
+{% endschema %}

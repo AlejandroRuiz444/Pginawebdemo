@@ -1,0 +1,82 @@
+{% comment %}
+  DREAM TAPE - HEADER NAVIGATION
+  Navegación sticky con logo y carrito
+{% endcomment %}
+
+<header class="dt-header">
+  <div class="dt-header-inner">
+    
+    {%- comment -%} Logo {%- endcomment -%}
+    <a href="{{ routes.root_url }}" class="dt-logo">
+      {{ section.settings.logo_text }}
+      {%- if section.settings.show_badge -%}
+        <span class="dt-logo-badge">{{ section.settings.badge_text }}</span>
+      {%- endif -%}
+    </a>
+    
+    {%- comment -%} Navegación Central {%- endcomment -%}
+    <nav class="dt-nav-links">
+      {%- for link in linklists[section.settings.menu].links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+    
+    {%- comment -%} Acciones de Header {%- endcomment -%}
+    <div class="dt-header-actions">
+      {%- if section.settings.show_login -%}
+        <a href="{{ routes.account_url }}" style="color: var(--dt-text-secondary); text-decoration: none; font-size: 14px;">
+          Log in
+        </a>
+      {%- endif -%}
+      
+      <a href="{{ routes.cart_url }}" class="dt-cart-icon" aria-label="Carrito de compras">
+        🛒
+        <span class="dt-cart-badge">{{ cart.item_count }}</span>
+      </a>
+    </div>
+    
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Dream Tape Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Texto del Logo",
+      "default": "LIFULL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Mostrar Badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Texto del Badge",
+      "default": "PAGO CONTRAENTREGA"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menú de Navegación",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_login",
+      "label": "Mostrar Login",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape Header"
+    }
+  ]
+}
+{% endschema %}

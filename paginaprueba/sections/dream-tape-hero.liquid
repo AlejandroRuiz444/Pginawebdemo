@@ -1,0 +1,244 @@
+{% comment %}
+  DREAM TAPE - HERO SECTION
+  Sección principal con producto, CTA y galería
+{% endcomment %}
+
+<section class="dt-hero">
+  <div class="dt-stars-canvas"></div>
+  
+  <div class="dt-container">
+    <div class="dt-hero-grid">
+      
+      {%- comment -%} LADO IZQUIERDO - CONTENIDO {%- endcomment -%}
+      <div class="dt-hero-content dt-animate">
+        
+        {%- comment -%} Eyebrow Badge {%- endcomment -%}
+        <div class="dt-eyebrow-badge">
+          {{ section.settings.eyebrow_icon }} {{ section.settings.eyebrow_text }}
+        </div>
+        
+        {%- comment -%} Título Principal {%- endcomment -%}
+        <h1 class="dt-hero-h1">{{ section.settings.hero_title }}</h1>
+        
+        {%- comment -%} Subtítulo {%- endcomment -%}
+        <h2 class="dt-hero-h2">{{ section.settings.hero_subtitle }}</h2>
+        
+        {%- comment -%} Descripción {%- endcomment -%}
+        <p class="dt-hero-description">{{ section.settings.hero_description }}</p>
+        
+        {%- comment -%} Bloque de Precio {%- endcomment -%}
+        <div class="dt-price-block">
+          {%- if section.settings.price_old != blank -%}
+            <span class="dt-price-old">{{ section.settings.price_old }}</span>
+          {%- endif -%}
+          <span class="dt-price-current">{{ section.settings.price_current }}</span>
+          {%- if section.settings.price_save != blank -%}
+            <span class="dt-price-save">{{ section.settings.price_save }}</span>
+          {%- endif -%}
+        </div>
+        
+        {%- comment -%} Botón CTA Principal {%- endcomment -%}
+        <button 
+          class="dt-cta-button" 
+          data-variant-id="{{ section.settings.product_variant_id }}"
+          aria-label="Agregar {{ section.settings.hero_title }} al carrito"
+        >
+          {{ section.settings.cta_text }}
+        </button>
+        
+        {%- comment -%} Texto de Urgencia {%- endcomment -%}
+        {%- if section.settings.show_urgency -%}
+          <div class="dt-urgency-text">
+            ⚡ Solo quedan <span class="stock-number">12</span> unidades
+          </div>
+        {%- endif -%}
+        
+        {%- comment -%} Badges de Confianza {%- endcomment -%}
+        <div class="dt-trust-badges">
+          <div class="dt-trust-badge">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
+            </svg>
+            🚚 ENVIO GRATIS
+          </div>
+          <div class="dt-trust-badge">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            ↩️ Devoluciones & Reembolsos
+          </div>
+          <div class="dt-trust-badge">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
+            </svg>
+            💳 PAGO CONTRAENTREGA
+          </div>
+        </div>
+        
+      </div>
+      
+      {%- comment -%} LADO DERECHO - GALERÍA {%- endcomment -%}
+      <div class="dt-hero-gallery dt-animate dt-animate-delay-1">
+        
+        {%- comment -%} Badge Flotante {%- endcomment -%}
+        {%- if section.settings.image_badge != blank -%}
+          <div class="dt-image-badge">{{ section.settings.image_badge }}</div>
+        {%- endif -%}
+        
+        {%- comment -%} Imagen Principal {%- endcomment -%}
+        {%- if section.settings.main_image != blank -%}
+          <img 
+            class="dt-main-image" 
+            src="{{ section.settings.main_image | image_url: width: 960 }}"
+            alt="{{ section.settings.hero_title }}"
+            width="480"
+            height="480"
+            loading="eager"
+          >
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'dt-main-image' }}
+        {%- endif -%}
+        
+        {%- comment -%} Miniaturas {%- endcomment -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="dt-thumbnails">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'gallery_image' -%}
+                {%- if block.settings.thumbnail != blank -%}
+                  <img 
+                    class="dt-thumbnail {% if forloop.first %}active{% endif %}"
+                    src="{{ block.settings.thumbnail | image_url: width: 160 }}"
+                    data-full-image="{{ block.settings.thumbnail | image_url: width: 960 }}"
+                    alt="Vista {{ forloop.index }}"
+                    width="80"
+                    height="80"
+                    loading="lazy"
+                  >
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+        
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dream Tape Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow_icon",
+      "label": "Eyebrow Icon",
+      "default": "🌙"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "SUEÑO PROFUNDO"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Título Principal",
+      "default": "Dream Tape"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Subtítulo",
+      "default": "Respira por la nariz. Duerme como nunca."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_description",
+      "label": "Descripción",
+      "default": "Adhesivo de grado médico que entrena tu respiración nasal mientras duermes."
+    },
+    {
+      "type": "text",
+      "id": "price_old",
+      "label": "Precio Anterior",
+      "default": "$99.900"
+    },
+    {
+      "type": "text",
+      "id": "price_current",
+      "label": "Precio Actual",
+      "default": "$69.900"
+    },
+    {
+      "type": "text",
+      "id": "price_save",
+      "label": "Texto de Ahorro",
+      "default": "Ahorra $30.000"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del Botón CTA",
+      "default": "📦 PIDELO YA"
+    },
+    {
+      "type": "text",
+      "id": "product_variant_id",
+      "label": "ID de Variante del Producto",
+      "info": "ID de la variante del producto en Shopify"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_urgency",
+      "label": "Mostrar Contador de Urgencia",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Imagen Principal del Producto"
+    },
+    {
+      "type": "text",
+      "id": "image_badge",
+      "label": "Badge en la Imagen",
+      "default": "🏆 #1 EN DESCANSO"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_image",
+      "name": "Imagen de Galería",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "thumbnail",
+          "label": "Imagen"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape Hero",
+      "blocks": [
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

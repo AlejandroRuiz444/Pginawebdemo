@@ -1,0 +1,104 @@
+{% comment %}
+  DREAM TAPE - FAQ
+  Sección de preguntas frecuentes con accordion
+{% endcomment %}
+
+<section class="dt-faq">
+  <div class="dt-container">
+    
+    {%- comment -%} Título {%- endcomment -%}
+    <h2 class="dt-faq-title dt-animate">{{ section.settings.title }}</h2>
+    <p class="dt-faq-subtitle dt-animate">{{ section.settings.subtitle }}</p>
+    
+    {%- comment -%} Accordion {%- endcomment -%}
+    <div class="dt-accordion">
+      
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq_item' -%}
+          <div class="dt-accordion-item dt-animate dt-animate-delay-{{ forloop.index | modulo: 4 }}" {{ block.shopify_attributes }}>
+            
+            <div class="dt-accordion-question">
+              <span>{{ block.settings.question }}</span>
+              <span class="dt-accordion-icon">▼</span>
+            </div>
+            
+            <div class="dt-accordion-answer">
+              <div class="dt-accordion-answer-content">
+                {{ block.settings.answer }}
+              </div>
+            </div>
+            
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+      
+    </div>
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dream Tape FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "¿Necesitas ayuda?"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Preguntas frecuentes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "Pregunta FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Respuesta"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿En cuánto llega mi pedido?",
+            "answer": "Los envíos se procesan en 24-48 horas hábiles. El tiempo de entrega varía según la ciudad: Bogotá 2-3 días, ciudades principales 3-5 días."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Dónde me puedo contactar?",
+            "answer": "Puedes contactarnos por WhatsApp, email o redes sociales. Encontrarás todos nuestros canales de contacto en el footer de la página."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Qué pasa si no me funciona el producto?",
+            "answer": "Ofrecemos garantía de satisfacción. Si no estás satisfecho con el producto, tienes 30 días para solicitar devolución del dinero."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,108 @@
+{% comment %}
+  DREAM TAPE - TESTIMONIALS
+  Sección de testimonios de clientes
+{% endcomment %}
+
+<section class="dt-testimonials">
+  <div class="dt-container">
+    
+    {%- comment -%} Título {%- endcomment -%}
+    <h2 class="dt-testimonials-title dt-animate">TESTIMONIOS</h2>
+    
+    {%- comment -%} Grid de Testimonios {%- endcomment -%}
+    <div class="dt-testimonials-grid">
+      
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'testimonial' -%}
+          <div class="dt-testimonial-card dt-animate dt-animate-delay-{{ forloop.index | modulo: 4 }}" {{ block.shopify_attributes }}>
+            
+            {%- comment -%} Estrellas {%- endcomment -%}
+            <div class="dt-stars">★★★★★</div>
+            
+            {%- comment -%} Texto del Testimonio {%- endcomment -%}
+            <p class="dt-testimonial-text">{{ block.settings.testimonial }}</p>
+            
+            {%- comment -%} Autor {%- endcomment -%}
+            <div class="dt-testimonial-author">
+              <div class="dt-author-avatar">
+                {{ block.settings.author_name | slice: 0 }}
+              </div>
+              <div class="dt-author-name">{{ block.settings.author_name }}</div>
+            </div>
+            
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+      
+    </div>
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dream Tape Testimonials",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonio",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "testimonial",
+          "label": "Texto del Testimonio"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Nombre del Autor",
+          "default": "CLIENTE"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "Llevaba meses despertándome cansado sin entender por qué. Dream Tape cambió todo. Ahora duermo profundo y amanezco con energía.",
+            "author_name": "SEBASTIAN LOPEZ"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "Mis ronquidos afectaban mi relación. Desde que uso Dream Tape, duermo mejor y mi pareja también descansa.",
+            "author_name": "CARLOS TORRES"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "Noté cómo mi cara estaba más hinchada y con ojeras. Desde que uso Dream Tape, mi piel se ve mejor y mi rostro más definido.",
+            "author_name": "VALENTINA GOMEZ"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "Garganta seca y mal aliento al despertar eran mi pesadilla. Dream Tape resolvió el problema desde la primera noche.",
+            "author_name": "SANTIAGO VALENCIA"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "Dream Tape es parte de mi rutina de autocuidado. Me ayuda a descansar profundamente y despertar renovada.",
+            "author_name": "MYA SOFIA"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

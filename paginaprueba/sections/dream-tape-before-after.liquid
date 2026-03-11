@@ -1,0 +1,112 @@
+{% comment %}
+  DREAM TAPE - BEFORE & AFTER
+  Slider interactivo de comparación antes/después
+{% endcomment %}
+
+<section class="dt-section">
+  <div class="dt-container">
+    
+    {%- comment -%} Título {%- endcomment -%}
+    <h2 class="dt-section-h2 dt-animate">{{ section.settings.title }}</h2>
+    <p class="dt-section-body dt-animate">{{ section.settings.subtitle }}</p>
+    
+    {%- comment -%} Slider de Comparación {%- endcomment -%}
+    {%- if section.settings.before_image != blank and section.settings.after_image != blank -%}
+      <div class="dt-before-after dt-animate" style="margin-top: 3rem;">
+        
+        {%- comment -%} Imagen ANTES {%- endcomment -%}
+        <img 
+          class="dt-before-after-image"
+          src="{{ section.settings.before_image | image_url: width: 1200 }}"
+          alt="Antes"
+          loading="lazy"
+        >
+        
+        {%- comment -%} Imagen DESPUÉS {%- endcomment -%}
+        <img 
+          class="dt-after-image"
+          src="{{ section.settings.after_image | image_url: width: 1200 }}"
+          alt="Después"
+          loading="lazy"
+        >
+        
+        {%- comment -%} Handle del slider {%- endcomment -%}
+        <div class="dt-slider-handle">
+          <div class="dt-slider-circle">
+            ⟷
+          </div>
+        </div>
+        
+        {%- comment -%} Labels {%- endcomment -%}
+        <div class="dt-label-badge dt-label-before">ANTES</div>
+        <div class="dt-label-badge dt-label-after">DESPUÉS</div>
+        
+      </div>
+    {%- else -%}
+      
+      {%- comment -%} Fallback con cards de texto {%- endcomment -%}
+      <div class="dt-split-grid dt-animate" style="margin-top: 3rem;">
+        
+        <div class="dt-feature-card" style="border-left: 3px solid var(--dt-urgency);">
+          <h3 style="color: var(--dt-urgency); margin-bottom: 1.5rem;">ANTES</h3>
+          <ul class="dt-list-check" style="text-align: left;">
+            <li><span class="x-icon">😩</span> Garganta seca al despertar</li>
+            <li><span class="x-icon">😴</span> Cansancio crónico</li>
+            <li><span class="x-icon">😤</span> Ronquidos nocturnos</li>
+            <li><span class="x-icon">😞</span> Cara hinchada</li>
+          </ul>
+        </div>
+        
+        <div class="dt-feature-card" style="border-left: 3px solid var(--dt-success);">
+          <h3 style="color: var(--dt-success); margin-bottom: 1.5rem;">DESPUÉS</h3>
+          <ul class="dt-list-check" style="text-align: left;">
+            <li><span class="check-icon">✅</span> Respiración nasal entrenada</li>
+            <li><span class="check-icon">⚡</span> Energía desde la mañana</li>
+            <li><span class="check-icon">🤫</span> Sin ronquidos</li>
+            <li><span class="check-icon">✨</span> Rostro más definido</li>
+          </ul>
+        </div>
+        
+      </div>
+      
+    {%- endif -%}
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dream Tape Before & After",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "ANTES & DESPUÉS"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Antes: agotado. Después: renovado con Dream Tape"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Imagen Antes",
+      "info": "Si no se proporciona, se mostrará un diseño alternativo con texto"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "Imagen Después",
+      "info": "Si no se proporciona, se mostrará un diseño alternativo con texto"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape Before & After"
+    }
+  ]
+}
+{% endschema %}

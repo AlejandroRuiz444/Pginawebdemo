@@ -1,0 +1,38 @@
+{% comment %}
+  DREAM TAPE - FOOTER TICKER (Inferior)
+  Ticker infinito idéntico al superior pero con texto diferente
+{% endcomment %}
+
+<div class="dt-footer-ticker">
+  <div class="dt-ticker-wrapper">
+    <span class="dt-ticker-text">
+      {{ section.settings.ticker_text }}
+      <span class="dt-ticker-separator">{{ section.settings.separator }}</span>
+    </span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Dream Tape Footer Ticker",
+  "settings": [
+    {
+      "type": "text",
+      "id": "ticker_text",
+      "label": "Texto del Ticker",
+      "default": "VIVE FULL VIVE LIFULL 🚀 — TU ALIADO EN LA VIDA"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separador",
+      "default": "•"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dream Tape Footer Ticker"
+    }
+  ]
+}
+{% endschema %}
